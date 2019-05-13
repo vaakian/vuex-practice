@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="Home">
     <h2>
       {{ $store.state.home.msg }}
       <br>
@@ -16,7 +16,7 @@
         </li>
       </ul>
     </h2>
-    <input type="text" v-model="homeArg">
+    <input type="text" v-model.lazy="homeArg">
     
     <button @click="randQuestion('5')">randQuestion</button>
     
@@ -29,7 +29,7 @@ import { mapActions } from 'vuex'
 import { mapState } from 'vuex'
 import { mapGetters } from 'vuex'
 export default {
-  name: 'HelloWorld',
+  name: 'Home',
   data() {
     return {
       homeArg: 5,
@@ -47,7 +47,7 @@ export default {
     // 方法1 
     ...mapState({
       homeMsg: state => state.home.msg, //访问modules.home的state
-      // homeMsg: 'home/msg' 不能这么访问，只有mutations, actions才可以
+      // homeMsg: 'home/msg' 不能这么访问，只有mutations, actions, getters才可以
     })
     /* 
     方法2 以home为根

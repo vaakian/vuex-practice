@@ -1,5 +1,8 @@
 const mutations = {
-  showMsg: state => {console.log(state.msg)}
+  SET_QUESTION: (state, questions) => {
+    if(questions)
+      state.questions = questions
+  }
 }
 
 export default mutations

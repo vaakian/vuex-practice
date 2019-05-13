@@ -11,6 +11,7 @@ const actions = {
   showMsg({ commit, state, dispatch}) {
     console.log(this)
     console.log(state.msg)
+    // commit('someMutations', arg)
   }
 }
 

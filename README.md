@@ -6,7 +6,7 @@
 
   - 应用层级的状态应该集中到单个 `store` 对象中。
 
-  - 提交 `mutation` 是更改状态的唯一方法，并且这个过程是同步的。
+  - 提交 `mutation` 是更改状态的唯一方法（通常方法名是使用大写），并且这个过程是同步的。
 
   - 异步逻辑都应该封装到 `action` 里面。
     - actions进行操作，最后通过mutation修改state
@@ -19,11 +19,11 @@
             })
             .then(res => {
               if(res.status == 200)
-                commit('setQuestion', res.data)
+                commit('SET_QUESTION', res.data)
                 // 使用mutations处理数据后修改state，类似装饰器效果
                 // 也可直接state.questions修改，不过需要自己手动处理
               else
-                commit('setQuestion', false)
+                commit('SET_QUESTION', false)
             })
             .catch(err => {
               console.log('error', err)
@@ -85,7 +85,7 @@ const state = {
 }
 const getters = {}
 const actions = {
-  // actions 第一个参数暴露了store，所以使用结构
+  // actions 第一个参数暴露了store，使用构
   actionsFunc({state, commit, rootState}, arg) {
     console.log(state, commit, rootState, arg)
   }
