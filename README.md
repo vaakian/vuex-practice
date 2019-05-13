@@ -207,3 +207,8 @@ export default new Vuex.Store({
     ```
     - 调用
       > $store.getters&#91;'path/funcName'&#93;(55)
+
+    ### 其他
+    1. 需要处理后返回的数据用`getter`,否则用`mapState`
+    2. 需要处理后修改的操作用`commit` > `mutations`
+    3. 待续

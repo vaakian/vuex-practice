@@ -16,9 +16,13 @@
         </li>
       </ul>
     </h2>
+    <h3>questions: {{ questions }}</h3>
+    <h3>categories: {{ categories }}</h3>
     <input type="text" v-model.lazy="homeArg">
     
-    <button @click="randQuestion('5')">randQuestion</button>
+    <button @click="randQuestion(homeArg)">randQuestion</button>
+
+    <button @click="getCategories">getCategories</button>
     
   </div>
 </template>
@@ -46,6 +50,8 @@ export default {
     }),
     // 方法1 
     ...mapState({
+      questions: state => state.home.questions,
+      categories: state => state.home.categories,
       homeMsg: state => state.home.msg, //访问modules.home的state
       // homeMsg: 'home/msg' 不能这么访问，只有mutations, actions, getters才可以
     })
@@ -58,7 +64,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      randQuestion: 'home/randQuestion'
+      randQuestion: 'home/randQuestion',
+      getCategories: 'home/getCategories'
     }),
     ...mapMutations({
       homeShowMsg: 'home/showMsg'

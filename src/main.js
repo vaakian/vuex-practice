@@ -6,6 +6,11 @@ import App from './App'
 import router from './router'
 
 import store from './store'
+// import axios from 'axios'
+// import Vueaxios from 'vue-axios'
+
+
+// Vue.prototype.$axios = axios // 原型链绑定
 Vue.config.productionTip = false
 Vue.config.devtools = true
 // /* eslint-disable no-new */

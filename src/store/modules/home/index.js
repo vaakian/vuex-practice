@@ -12,7 +12,8 @@ const state = {
   ],
   questions: [
     { title: '加载中', A: '', B: '', C: '', D: '', answer: '' }
-  ]
+  ],
+  categories: []
 }
 
 
