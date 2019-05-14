@@ -1,4 +1,4 @@
-# vuex 练习笔记
+# vue&vuex 练习笔记
 
 > create at 2019-5-13 15:58:34
 
@@ -212,3 +212,82 @@ export default new Vuex.Store({
     1. 需要处理后返回的数据用`getter`,否则用`mapState`
     2. 需要处理后修改的操作用`commit` > `mutations`
     3. 待续
+
+### `vue ≥2.6` 之`slot`插槽
+
+  1. 默认插槽
+
+      - 子组件添加`slot`插槽。
+      - 父组件使用`<child>张三</child>`则`"张三"`会插入到子组件`slot`的位置。
+
+  2. 具体名插槽
+
+      - 子组件添加`<slot name="mySlot">default</slot>`
+      - 父组件使用`<template v-slot:myslot>content</template>`
+
+  3. 读取子组件属性
+
+      - 子组件`<slot name="mySlot" user="John"></slot>`
+      - 父组件`<template v-slot:myslot="slotProps">{{ slotProps.user }}</template>`
+
+  - 父组件未提供`v-slot`内容时，显示子组件默认内容，反之则被覆盖。
+  
+
+  example:
+
+  - 子组件`AppMenu`
+  
+    ```html
+    <template>
+      <ul>
+        <li>home</li>
+        <li>info</li>
+        <li>search</li>
+        <li>user</li>
+        <!-- 支持多个同名插槽 -->
+        <slot name="mySlot" :user="user">
+        <!-- 此处绑定子组件内部变量 -->
+          default content...
+        </slot>
+
+        <slot name="mySlot" user="John">
+          default content...
+        </slot>
+
+        <slot name="mySlot" user="Cindy">
+          default content...
+        </slot>
+      </ul>
+    </template>
+    <script>
+      export default {
+        data () {
+          return {
+            user: 'Angela'
+          }
+        }
+      }
+    </script>
+    ```
+    - 父组件调用
+    
+    ```html
+    <template>
+      <div id="app">
+        <!-- <img src="./assets/logo.png"> -->
+        <AppMenu>
+          <template v-slot:myslot="slopProps">
+            <span class="sloter">{{ slopProps.user }}</span>
+            <!-- slopProps自己随意取名 -->
+            <!-- 这里访问到了子组件的user标签属性 -->
+          </template>
+        </AppMenu>
+        <router-view/>
+      </div>
+    </template>
+    ```
+
+    >结果
+
+    ![v-slot插槽](./md_static/v-slot1.png)
+

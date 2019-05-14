@@ -4,7 +4,7 @@ import api from '@/api'
 const actions = {
   // randQuestion: (context, count) => {
     randQuestion({commit, state}, count) {
-      console.log(api)
+      // console.log(api)
       api.randQuestion({
         count: count,
         isfav: 2,

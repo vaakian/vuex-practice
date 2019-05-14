@@ -14,9 +14,7 @@ ajax.interceptors.response.use(
     return response
 }, function(error) {
     // 请求失败
-    s.$Modal.error({
-        content: '网络请求失败！请检查您的网络设置！'
-    })
+    console.log('网络请求失败！请检查您的网络设置！')
     return Promise.reject(error)
 })
 

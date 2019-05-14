@@ -1,5 +1,5 @@
 import ajax from './ajax'
-
+// 导入已经封装好的ajax请求
 
 function randQuestion(params) {
   return ajax({
