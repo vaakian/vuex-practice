@@ -291,3 +291,7 @@ export default new Vuex.Store({
 
     ![v-slot插槽](./md_static/v-slot1.png)
 
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 055e4680624dcdb79d3f6e04edec490c4d57a380
