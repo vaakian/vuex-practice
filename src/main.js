@@ -9,10 +9,16 @@ import store from './store'
 // import axios from 'axios'
 // import Vueaxios from 'vue-axios'
 
-
+function MainHello() {
+  console.log('MainHello');
+}
 // Vue.prototype.$axios = axios // 原型链绑定
 Vue.config.productionTip = false
-Vue.config.devtools = true
+Vue.config.devtools = false
+// 挂载到Vue对象原型链
+Vue.prototype.MainHello = MainHello
+// 挂载到全局
+window.MainHello = MainHello
 // /* eslint-disable no-new */
 /* eslint-disable */
 new Vue({
