@@ -2,12 +2,14 @@ import axios from 'axios'
 /**
  * 获取一个新的自定义的axios实例
  */
-// 定义拦截器
+
 let ajax = axios.create({
     baseURL: 'http://cdn.z-os.cn:801/api/',
     timeout: 5000,
     withCredentials: false
 })
+
+// 定义拦截器
 ajax.interceptors.response.use(
   function(response) {
   // 请求成功
