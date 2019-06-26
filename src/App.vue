@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import AppMenu from '@/components/Menu'
+import AppMenu from '#/Menu'
 export default {
   name: 'App',
   components: { AppMenu }
