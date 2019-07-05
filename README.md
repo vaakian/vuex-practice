@@ -293,7 +293,85 @@ export default new Vuex.Store({
 
     ![v-slot插槽](./md_static/v-slot1.png)
 
-<<<<<<< HEAD
-=======
-    
->>>>>>> 055e4680624dcdb79d3f6e04edec490c4d57a380
+# axios请求封装与async/await
+
+## async与await
+
+- `await`运算符将等到异步函数的`promise.resolve()`后执行后面的语句
+
+- 使用`async`标识的方法将返回`Promise.resolve()`
+
+- `await`无法捕获reject, 可使用`try catch`实现`resolve`, `reject`
+
+
+```javascript
+const Login = function(pwd) {
+  return new Promise((resolve, reject) => {
+    if(pwd == 'admin') resolve('suc');
+    reject('fail');
+  })
+}
+const unLogin = async function(pwd) {
+  try {        
+    const res = await Login(pwd);
+    return {msg: '登陆成功！', data: res};
+  } catch {
+    return Promise.reject({msg: '登录失败！', data: new Error('catched')});
+  }
+}
+```
+
+## axios
+
+- 新建实例
+
+```javascript
+const ajax = axios.create({
+    aseURL: 'http://cdn.z-os.cn:801/api',
+    timeout: 5000,
+    withCredentials: false
+})
+```
+
+- 定义拦截器
+
+```javascript
+
+// 对请求参数进行处理（请求前）
+ajax.interceptors.request.use(config => {
+  // do something before request.
+
+}, error => {
+  // do something when error occurs.
+  return Promise.reject(error);
+})
+
+
+// 对响应做处理（请求完毕）
+ajax.interceptors.response.use(response => {
+  // 对返回数据做处理
+}, error => {
+  // 请求错误，非20X系列响应码，如404，网络异常等
+  return Promise.reject(error);
+})
+```
+
+- 使用await/async二次封装请求，方便处理返回值
+
+```javascript
+const get_question = async function({count, type, name}) {
+  // 方便判断res返回值
+  const res = await ajax({
+    url: 'randQuestion', 
+    method: 'get',
+    params: {count, type, name}
+  })
+  const new_res = res
+  if(res.data.msg === 'success') {
+    do_something();
+    new_res.description == '处理后的数据';
+  }
+  // 如果不需要做进一步判断，可不用async/await
+  return new_res
+}
+```
